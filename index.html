@@ -1,0 +1,1173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Apex Global Bank - Core Banking Management System</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/print.css" media="print">
+  <!-- Chart.js for Interactive Graphical Reports -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+</head>
+<body>
+
+<div class="app-layout">
+
+  <!-- =========================================================================
+       SIDEBAR NAVIGATION
+       ========================================================================= -->
+  <aside class="sidebar">
+    <div class="sidebar-header">
+      <div class="bank-logo-icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="3" y1="21" x2="21" y2="21"></line>
+          <line x1="3" y1="10" x2="21" y2="10"></line>
+          <polyline points="5 6 12 3 19 6"></polyline>
+          <line x1="4" y1="10" x2="4" y2="21"></line>
+          <line x1="20" y1="10" x2="20" y2="21"></line>
+          <line x1="8" y1="14" x2="8" y2="17"></line>
+          <line x1="12" y1="14" x2="12" y2="17"></line>
+          <line x1="16" y1="14" x2="16" y2="17"></line>
+        </svg>
+      </div>
+      <div class="bank-logo-text">
+        <span class="bank-logo-title">APEX BANK</span>
+        <span class="bank-logo-subtitle">Core Banking Portal</span>
+      </div>
+    </div>
+
+    <nav class="sidebar-nav">
+      <div class="nav-section-title">Core Banking</div>
+
+      <div class="nav-link active" data-view="dashboard">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="3" y="3" width="7" height="9"></rect><rect x="14" y="3" width="7" height="5"></rect><rect x="14" y="12" width="7" height="9"></rect><rect x="3" y="16" width="7" height="5"></rect></svg>
+        <span>Dashboard</span>
+      </div>
+
+      <div class="nav-link" data-view="customers">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+        <span>Customers</span>
+      </div>
+
+      <div class="nav-link" data-view="accounts">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="2" y="5" width="20" height="14" rx="2"></rect><line x1="2" y1="10" x2="22" y2="10"></line></svg>
+        <span>Bank Accounts</span>
+      </div>
+
+      <div class="nav-link" data-view="deposit">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><line x1="12" y1="19" x2="12" y2="5"></line><polyline points="5 12 12 5 19 12"></polyline></svg>
+        <span>Deposit Funds</span>
+      </div>
+
+      <div class="nav-link" data-view="withdraw">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><line x1="12" y1="5" x2="12" y2="19"></line><polyline points="19 12 12 19 5 12"></polyline></svg>
+        <span>Withdraw Funds</span>
+      </div>
+
+      <div class="nav-link" data-view="transfers">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><polyline points="17 1 21 5 17 9"></polyline><path d="M3 11V9a4 4 0 0 1 4-4h14"></path><polyline points="7 23 3 19 7 15"></polyline><path d="M21 13v2a4 4 0 0 1-4 4H3"></path></svg>
+        <span>Fund Transfer</span>
+      </div>
+
+      <div class="nav-link" data-view="transactions">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><line x1="8" y1="6" x2="21" y2="6"></line><line x1="8" y1="12" x2="21" y2="12"></line><line x1="8" y1="18" x2="21" y2="18"></line><line x1="3" y1="6" x2="3.01" y2="6"></line><line x1="3" y1="12" x2="3.01" y2="12"></line><line x1="3" y1="18" x2="3.01" y2="18"></line></svg>
+        <span>Transaction Ledger</span>
+      </div>
+
+      <div class="nav-section-title">Reports & Analytics</div>
+
+      <div class="nav-link" data-view="reports">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg>
+        <span>Reports & Statements</span>
+      </div>
+
+      <div id="navAdminSection">
+        <div class="nav-section-title">Administration</div>
+
+        <div class="nav-link" data-view="admin">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><line x1="19" y1="8" x2="19" y2="14"></line><line x1="22" y1="11" x2="16" y2="11"></line></svg>
+          <span>System Users</span>
+        </div>
+
+        <div class="nav-link" data-view="audit">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+          <span>Security Audit Logs</span>
+        </div>
+      </div>
+    </nav>
+
+    <div class="sidebar-footer">
+      <div class="user-mini-profile">
+        <div class="user-avatar" id="sidebarUserAvatar">AD</div>
+        <div class="user-meta">
+          <div class="user-meta-name" id="sidebarUserName">Administrator</div>
+          <div class="user-meta-role" id="sidebarUserRole">ROLE_ADMIN</div>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- =========================================================================
+       MAIN WRAPPER
+       ========================================================================= -->
+  <div class="main-wrapper">
+
+    <!-- Topbar -->
+    <header class="topbar">
+      <div class="topbar-left">
+        <button class="menu-toggle-btn" id="menuToggleBtn">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+        </button>
+        <div class="topbar-title-block">
+          <h1>Apex Global Banking System</h1>
+          <p>Academic Software Engineering Demonstration &bull; Secure Core Engine</p>
+        </div>
+      </div>
+
+      <div class="topbar-right">
+        <div class="live-badge" id="systemStatusBadge" onclick="API.checkBackend()" style="cursor:pointer;" title="Click to refresh backend connection status">
+          <span class="live-pulse"></span>
+          <span id="systemStatusText">SYSTEM ONLINE</span>
+        </div>
+
+        <div class="system-clock" id="topbarClock">--:--:--</div>
+
+        <span class="role-pill admin" id="topbarRolePill">ADMIN</span>
+
+        <button class="btn btn-secondary btn-sm" id="topbarResetBtn" onclick="if(confirm('Reset all demo data to default baseline?')) API.resetDemoData()" title="Reset all records to initial demonstration state">
+          Reset Data
+        </button>
+
+        <button class="btn btn-secondary btn-sm" id="topbarLoginBtn" onclick="App.openModal('loginModal')">
+          Sign In
+        </button>
+
+        <button class="btn btn-secondary btn-sm" id="topbarLogoutBtn" onclick="Auth.logout()">
+          Sign Out
+        </button>
+      </div>
+    </header>
+
+    <!-- Page Body Container -->
+    <main class="page-container">
+
+      <!-- =====================================================================
+           VIEW 1: DASHBOARD
+           ===================================================================== -->
+      <section class="view-section active" id="view-dashboard">
+        <div class="section-header">
+          <div>
+            <h2>Banking Operations Dashboard</h2>
+            <p>Real-time overview of customer accounts, liquid reserves, and daily transaction flows</p>
+          </div>
+          <div class="header-actions">
+            <button class="btn btn-secondary" onclick="Dashboard.loadStats()">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 4 23 10 17 10"></polyline><polyline points="1 20 1 14 7 14"></polyline><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path></svg>
+              Refresh
+            </button>
+            <button class="btn btn-primary" onclick="App.openModal('newAccountModal')">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+              Open Account
+            </button>
+          </div>
+        </div>
+
+        <!-- Quick Action Buttons -->
+        <div class="quick-actions-bar">
+          <div class="action-pill-btn" onclick="Transactions.openQuickDeposit()">
+            <div class="action-pill-icon" style="background:#ecfdf5; color:#059669;">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="19" x2="12" y2="5"></line><polyline points="5 12 12 5 19 12"></polyline></svg>
+            </div>
+            <div>
+              <div class="action-pill-title">Quick Deposit</div>
+              <div class="action-pill-desc">Credit cash to an active account</div>
+            </div>
+          </div>
+
+          <div class="action-pill-btn" onclick="Transactions.openQuickWithdraw()">
+            <div class="action-pill-icon" style="background:#fff1f2; color:#dc2626;">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"></line><polyline points="19 12 12 19 5 12"></polyline></svg>
+            </div>
+            <div>
+              <div class="action-pill-title">Quick Withdrawal</div>
+              <div class="action-pill-desc">Debit cash with balance validation</div>
+            </div>
+          </div>
+
+          <div class="action-pill-btn" onclick="App.switchView('transfers')">
+            <div class="action-pill-icon" style="background:#eff6ff; color:#2563eb;">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="17 1 21 5 17 9"></polyline><path d="M3 11V9a4 4 0 0 1 4-4h14"></path><polyline points="7 23 3 19 7 15"></polyline><path d="M21 13v2a4 4 0 0 1-4 4H3"></path></svg>
+            </div>
+            <div>
+              <div class="action-pill-title">Fund Transfer</div>
+              <div class="action-pill-desc">Atomic account-to-account transfer</div>
+            </div>
+          </div>
+
+          <div class="action-pill-btn" onclick="App.openModal('newCustomerModal')">
+            <div class="action-pill-icon" style="background:#fef3c7; color:#d97706;">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="8.5" cy="7" r="4"></circle><line x1="20" y1="8" x2="20" y2="14"></line><line x1="23" y1="11" x2="17" y2="11"></line></svg>
+            </div>
+            <div>
+              <div class="action-pill-title">New Customer</div>
+              <div class="action-pill-desc">Register KYC verified customer</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- KPI Metric Cards Grid -->
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-card-header">
+              <span class="stat-card-title">Registered Customers</span>
+              <div class="stat-icon blue">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle></svg>
+              </div>
+            </div>
+            <div class="stat-value" id="dashTotalCustomers">0</div>
+            <div class="stat-footer">Verified customer records</div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-card-header">
+              <span class="stat-card-title">Active Accounts</span>
+              <div class="stat-icon green">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="5" width="20" height="14" rx="2"></rect><line x1="2" y1="10" x2="22" y2="10"></line></svg>
+              </div>
+            </div>
+            <div class="stat-value" id="dashActiveAccounts">0</div>
+            <div class="stat-footer">Savings & Current Accounts</div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-card-header">
+              <span class="stat-card-title">Total Bank Reserves</span>
+              <div class="stat-icon navy">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+              </div>
+            </div>
+            <div class="stat-value" id="dashBankBalance">$0.00</div>
+            <div class="stat-footer">Net liquid deposits</div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-card-header">
+              <span class="stat-card-title">Total Deposits</span>
+              <div class="stat-icon green">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="19" x2="12" y2="5"></line><polyline points="5 12 12 5 19 12"></polyline></svg>
+              </div>
+            </div>
+            <div class="stat-value" id="dashTotalDeposits" style="color:var(--emerald-600);">$0.00</div>
+            <div class="stat-footer">Cumulative credited volume</div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-card-header">
+              <span class="stat-card-title">Total Withdrawals</span>
+              <div class="stat-icon red">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"></line><polyline points="19 12 12 19 5 12"></polyline></svg>
+              </div>
+            </div>
+            <div class="stat-value" id="dashTotalWithdrawals" style="color:var(--rose-600);">$0.00</div>
+            <div class="stat-footer">Cumulative debited volume</div>
+          </div>
+        </div>
+
+        <!-- Charts Grid -->
+        <div class="charts-grid">
+          <div class="card">
+            <div class="card-header">
+              <h3>Monthly Transaction Cashflow</h3>
+              <span class="badge badge-info">Chart.js Analytics</span>
+            </div>
+            <div class="card-body">
+              <div class="chart-container">
+                <canvas id="cashflowChart"></canvas>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-header">
+              <h3>Account Type Breakdown</h3>
+              <span class="badge badge-neutral">Portfolio</span>
+            </div>
+            <div class="card-body">
+              <div class="chart-container">
+                <canvas id="accountDistChart"></canvas>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Recent Transactions Table -->
+        <div class="card">
+          <div class="card-header">
+            <h3>Recent Banking Transactions</h3>
+            <button class="btn btn-sm btn-secondary" onclick="App.switchView('transactions')">
+              View All Ledger &rarr;
+            </button>
+          </div>
+          <div class="table-responsive">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Reference</th>
+                  <th>Date & Time</th>
+                  <th>Account Number</th>
+                  <th>Transaction Type</th>
+                  <th>Amount</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="dashRecentTxnBody">
+                <!-- Loaded via JS -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- =====================================================================
+           VIEW 2: CUSTOMERS MANAGEMENT
+           ===================================================================== -->
+      <section class="view-section" id="view-customers">
+        <div class="section-header">
+          <div>
+            <h2>Customer Management</h2>
+            <p>Register, verify, and monitor retail and corporate banking customers</p>
+          </div>
+          <div class="header-actions">
+            <button class="btn btn-primary" onclick="App.openModal('newCustomerModal')">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+              Register New Customer
+            </button>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="table-toolbar">
+            <div class="search-input-wrap">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+              <input type="text" class="search-input" id="customerSearchInput" placeholder="Search customer by name, code, email, or phone...">
+            </div>
+          </div>
+          <div class="table-responsive">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Customer Code</th>
+                  <th>Full Name & ID</th>
+                  <th>Email</th>
+                  <th>Phone Number</th>
+                  <th>Accounts</th>
+                  <th>Status</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="customersTableBody">
+                <!-- Loaded via JS -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- =====================================================================
+           VIEW 3: BANK ACCOUNTS
+           ===================================================================== -->
+      <section class="view-section" id="view-accounts">
+        <div class="section-header">
+          <div>
+            <h2>Bank Account Management</h2>
+            <p>Create and monitor unique 12-digit Savings and Current accounts</p>
+          </div>
+          <div class="header-actions">
+            <button class="btn btn-primary" onclick="App.openModal('newAccountModal')">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+              Open New Account
+            </button>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="table-toolbar">
+            <div class="search-input-wrap">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+              <input type="text" class="search-input" id="accountSearchInput" placeholder="Search account number or customer name...">
+            </div>
+          </div>
+          <div class="table-responsive">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Account Number</th>
+                  <th>Account Holder</th>
+                  <th>Type</th>
+                  <th>Current Balance</th>
+                  <th>Min Balance</th>
+                  <th>Status</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="accountsTableBody">
+                <!-- Loaded via JS -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- =====================================================================
+           VIEW 4: DEPOSIT FUNDS
+           ===================================================================== -->
+      <section class="view-section" id="view-deposit">
+        <div class="section-header">
+          <div>
+            <h2>Deposit Management</h2>
+            <p>Process cash and electronic deposits into active customer accounts</p>
+          </div>
+        </div>
+
+        <div style="max-width: 620px; margin: 0 auto;">
+          <div class="card">
+            <div class="card-header">
+              <h3>Direct Account Deposit</h3>
+              <span class="badge badge-success">Credit Transaction</span>
+            </div>
+            <div class="card-body">
+              <form onsubmit="Transactions.handleDeposit(event)">
+                <div class="form-group">
+                  <label class="form-label">Beneficiary Account <span class="req">*</span></label>
+                  <select class="form-control" name="accountNumber" id="depositDedicatedAccount" required>
+                    <!-- populated from accounts -->
+                  </select>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label">Deposit Amount (USD) <span class="req">*</span></label>
+                  <input type="number" step="0.01" min="1.00" class="form-control" name="amount" placeholder="e.g. 500.00" required>
+                  <div class="form-hint">Amount must be strictly greater than $0.00.</div>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label">Deposit Description / Reference Note</label>
+                  <input type="text" class="form-control" name="description" placeholder="e.g. Counter Cash Deposit / Salary Credit">
+                </div>
+
+                <div style="display:flex; justify-content:flex-end; gap:10px; margin-top:20px;">
+                  <button type="reset" class="btn btn-secondary">Reset</button>
+                  <button type="submit" class="btn btn-success">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                    Confirm & Process Deposit
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- =====================================================================
+           VIEW 5: WITHDRAW FUNDS
+           ===================================================================== -->
+      <section class="view-section" id="view-withdraw">
+        <div class="section-header">
+          <div>
+            <h2>Withdrawal Management</h2>
+            <p>Validate available balance and debit funds while enforcing minimum reserve rules</p>
+          </div>
+        </div>
+
+        <div style="max-width: 620px; margin: 0 auto;">
+          <div class="card">
+            <div class="card-header">
+              <h3>Cash Withdrawal Processing</h3>
+              <span class="badge badge-danger">Debit Transaction</span>
+            </div>
+            <div class="card-body">
+              <form onsubmit="Transactions.handleWithdraw(event)">
+                <div class="form-group">
+                  <label class="form-label">Account to Debit <span class="req">*</span></label>
+                  <select class="form-control" name="accountNumber" id="withdrawDedicatedAccount" required>
+                    <!-- populated from accounts -->
+                  </select>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label">Withdrawal Amount (USD) <span class="req">*</span></label>
+                  <input type="number" step="0.01" min="1.00" class="form-control" name="amount" placeholder="e.g. 200.00" required>
+                  <div class="form-hint">System verifies that remaining balance stays &ge; minimum required reserve.</div>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label">Transaction Purpose / Remarks</label>
+                  <input type="text" class="form-control" name="description" placeholder="e.g. Counter Cash Withdrawal">
+                </div>
+
+                <div style="display:flex; justify-content:flex-end; gap:10px; margin-top:20px;">
+                  <button type="reset" class="btn btn-secondary">Reset</button>
+                  <button type="submit" class="btn btn-danger">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                    Authorize Withdrawal
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- =====================================================================
+           VIEW 6: FUND TRANSFER
+           ===================================================================== -->
+      <section class="view-section" id="view-transfers">
+        <div class="section-header">
+          <div>
+            <h2>Inter-Account Fund Transfer</h2>
+            <p>Atomic double-entry transfer ensuring strict ACID database consistency</p>
+          </div>
+        </div>
+
+        <div class="card" style="margin-bottom:24px;">
+          <div class="card-header">
+            <h3>Execute New Transfer</h3>
+            <span class="badge badge-info">Atomic Transaction</span>
+          </div>
+          <div class="card-body">
+            <form id="fundTransferForm">
+              <div class="form-row">
+                <div class="form-group">
+                  <label class="form-label">Source Account (Sender) <span class="req">*</span></label>
+                  <select class="form-control" name="sourceAccount" id="transferSourceAccount" required>
+                    <!-- Options via JS -->
+                  </select>
+                  <div id="transferSourceBalanceInfo" style="display:none; font-size:12px; color:var(--emerald-600); margin-top:6px; background:#ecfdf5; padding:8px 12px; border-radius:var(--radius-sm); border:1px solid var(--emerald-100);"></div>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label">Destination Account (Beneficiary) <span class="req">*</span></label>
+                  <select class="form-control" name="destAccount" id="transferDestAccount" required>
+                    <!-- Options via JS -->
+                  </select>
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group">
+                  <label class="form-label">Transfer Amount (USD) <span class="req">*</span></label>
+                  <input type="number" step="0.01" min="1.00" class="form-control" name="amount" placeholder="e.g. 250.00" required>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label">Transfer Remark / Purpose</label>
+                  <input type="text" class="form-control" name="remark" placeholder="e.g. Invoice settlement, monthly allowance">
+                </div>
+              </div>
+
+              <div style="display:flex; justify-content:flex-end; gap:10px; margin-top:16px;">
+                <button type="reset" class="btn btn-secondary">Clear</button>
+                <button type="submit" class="btn btn-primary">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="17 1 21 5 17 9"></polyline><path d="M3 11V9a4 4 0 0 1 4-4h14"></path><polyline points="7 23 3 19 7 15"></polyline><path d="M21 13v2a4 4 0 0 1-4 4H3"></path></svg>
+                  Execute Transfer
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+
+        <!-- Transfer History Table -->
+        <div class="card">
+          <div class="card-header">
+            <h3>Recent Inter-Account Transfer History</h3>
+          </div>
+          <div class="table-responsive">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Transfer Ref</th>
+                  <th>Date & Time</th>
+                  <th>Sender Account</th>
+                  <th>Receiver Account</th>
+                  <th>Amount</th>
+                  <th>Status</th>
+                  <th>Receipt</th>
+                </tr>
+              </thead>
+              <tbody id="transfersTableBody">
+                <!-- Loaded via JS -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- =====================================================================
+           VIEW 7: TRANSACTION LEDGER
+           ===================================================================== -->
+      <section class="view-section" id="view-transactions">
+        <div class="section-header">
+          <div>
+            <h2>Comprehensive Transaction Ledger</h2>
+            <p>Auditable, complete financial record of all deposits, withdrawals, and transfers</p>
+          </div>
+          <div class="header-actions">
+            <button class="btn btn-secondary" onclick="Transactions.loadTransactions()">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 4 23 10 17 10"></polyline><polyline points="1 20 1 14 7 14"></polyline><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path></svg>
+              Refresh
+            </button>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="table-toolbar">
+            <div class="search-input-wrap">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+              <input type="text" class="search-input" id="txnSearchInput" placeholder="Filter by transaction reference or account...">
+            </div>
+
+            <div class="toolbar-filters">
+              <select class="select-filter" id="txnTypeFilter">
+                <option value="">All Transaction Types</option>
+                <option value="DEPOSIT">Deposits Only</option>
+                <option value="WITHDRAWAL">Withdrawals Only</option>
+                <option value="TRANSFER_DEBIT">Transfer Debits</option>
+                <option value="TRANSFER_CREDIT">Transfer Credits</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="table-responsive">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Transaction Ref</th>
+                  <th>Date & Time</th>
+                  <th>Account Number</th>
+                  <th>Type</th>
+                  <th>Amount</th>
+                  <th>Balance After</th>
+                  <th>Advice / Receipt</th>
+                </tr>
+              </thead>
+              <tbody id="transactionsTableBody">
+                <!-- Loaded via JS -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- =====================================================================
+           VIEW 8: REPORTS & STATEMENTS
+           ===================================================================== -->
+      <section class="view-section" id="view-reports">
+        <div class="section-header">
+          <div>
+            <h2>Reports & Account Statements</h2>
+            <p>Generate certified customer account statements and financial summaries</p>
+          </div>
+        </div>
+
+        <!-- Financial Performance Overview Cards -->
+        <div class="stats-grid" style="margin-bottom: 24px;">
+          <div class="stat-card">
+            <div class="stat-card-header">
+              <span class="stat-card-title">Total Inflows (Deposits)</span>
+              <div class="stat-icon green"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg></div>
+            </div>
+            <div class="stat-value" id="reportTotalDeposits" style="color:var(--emerald-600);">$0.00</div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-card-header">
+              <span class="stat-card-title">Total Outflows (Withdrawals)</span>
+              <div class="stat-icon red"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg></div>
+            </div>
+            <div class="stat-value" id="reportTotalWithdrawals" style="color:var(--rose-600);">$0.00</div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-card-header">
+              <span class="stat-card-title">Net Liquidity Flow</span>
+              <div class="stat-icon blue"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg></div>
+            </div>
+            <div class="stat-value" id="reportNetCashflow">$0.00</div>
+          </div>
+        </div>
+
+        <!-- Statement Filter Box -->
+        <div class="card">
+          <div class="card-header">
+            <h3>Generate Certified Account Statement</h3>
+            <span class="badge badge-info">PDF & Print Ready</span>
+          </div>
+          <div class="card-body">
+            <form id="statementFilterForm">
+              <div class="form-row">
+                <div class="form-group">
+                  <label class="form-label">Select Bank Account <span class="req">*</span></label>
+                  <select class="form-control" id="statementAccountSelect" required>
+                    <!-- Populated via JS -->
+                  </select>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label">Statement Period</label>
+                  <div style="display:grid; grid-template-columns: 1fr 1fr; gap:10px;">
+                    <input type="date" class="form-control" id="statementFromDate" title="From Date">
+                    <input type="date" class="form-control" id="statementToDate" title="To Date">
+                  </div>
+                </div>
+              </div>
+
+              <div style="display:flex; justify-content:flex-end; gap:10px; margin-top:10px;">
+                <button type="submit" class="btn btn-primary">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                  Generate Statement
+                </button>
+              </div>
+            </form>
+
+            <div id="statementResultContainer">
+              <!-- Rendered via JS -->
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- =====================================================================
+           VIEW 9: SYSTEM USERS (ADMIN)
+           ===================================================================== -->
+      <section class="view-section" id="view-admin">
+        <div class="section-header">
+          <div>
+            <h2>System Administration & Staff Management</h2>
+            <p>Manage employee privileges, assign system roles, and control account credentials</p>
+          </div>
+          <div class="header-actions">
+            <button class="btn btn-primary" onclick="App.openModal('newEmployeeModal')">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+              Register New Employee
+            </button>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <h3>Registered User Accounts & Access Roles</h3>
+          </div>
+          <div class="table-responsive">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Username</th>
+                  <th>Full Name</th>
+                  <th>Email</th>
+                  <th>Assigned Role</th>
+                  <th>Status</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="adminUsersTableBody">
+                <!-- Loaded via JS -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- =====================================================================
+           VIEW 10: SECURITY AUDIT LOGS
+           ===================================================================== -->
+      <section class="view-section" id="view-audit">
+        <div class="section-header">
+          <div>
+            <h2>Security & Operational Audit Trail</h2>
+            <p>Chronological immutable audit log tracking authentication, money transfers, and administrative actions</p>
+          </div>
+          <div class="header-actions">
+            <button class="btn btn-secondary" onclick="Admin.loadAuditLogs()">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 4 23 10 17 10"></polyline><polyline points="1 20 1 14 7 14"></polyline><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path></svg>
+              Refresh Logs
+            </button>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="table-responsive">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Timestamp</th>
+                  <th>Action</th>
+                  <th>Performed By</th>
+                  <th>Details</th>
+                  <th>Origin IP</th>
+                </tr>
+              </thead>
+              <tbody id="adminLogsTableBody">
+                <!-- Loaded via JS -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+    </main>
+  </div>
+</div>
+
+<!-- ===========================================================================
+     MODAL DIALOGS
+     =========================================================================== -->
+
+<!-- Modal 1: New Customer Registration -->
+<div class="modal-overlay" id="newCustomerModal">
+  <div class="modal-container">
+    <div class="modal-header">
+      <h3>
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="8.5" cy="7" r="4"></circle></svg>
+        Register New Customer Profile
+      </h3>
+      <button class="modal-close-btn">&times;</button>
+    </div>
+    <form id="newCustomerForm">
+      <div class="modal-body">
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">First Name <span class="req">*</span></label>
+            <input type="text" class="form-control" name="firstName" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Last Name <span class="req">*</span></label>
+            <input type="text" class="form-control" name="lastName" required>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Email Address <span class="req">*</span></label>
+            <input type="email" class="form-control" name="email" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Phone Number <span class="req">*</span></label>
+            <input type="text" class="form-control" name="phone" placeholder="+1-555-0100" required>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Identity Number (Aadhaar / SSN) <span class="req">*</span></label>
+            <input type="text" class="form-control" name="identityNumber" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Date of Birth</label>
+            <input type="date" class="form-control" name="dateOfBirth">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Residential Street Address</label>
+          <input type="text" class="form-control" name="address" placeholder="123 Financial Way">
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">City</label>
+            <input type="text" class="form-control" name="city">
+          </div>
+          <div class="form-group">
+            <label class="form-label">State / Region</label>
+            <input type="text" class="form-control" name="state">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Postal Code</label>
+          <input type="text" class="form-control" name="postalCode">
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" onclick="App.closeModal('newCustomerModal')">Cancel</button>
+        <button type="submit" class="btn btn-primary">Create Customer Record</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- Modal 2: Open Bank Account -->
+<div class="modal-overlay" id="newAccountModal">
+  <div class="modal-container">
+    <div class="modal-header">
+      <h3>
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="5" width="20" height="14" rx="2"></rect><line x1="2" y1="10" x2="22" y2="10"></line></svg>
+        Open New Bank Account
+      </h3>
+      <button class="modal-close-btn">&times;</button>
+    </div>
+    <form id="newAccountForm">
+      <div class="modal-body">
+        <div class="form-group">
+          <label class="form-label">Select Verified Customer <span class="req">*</span></label>
+          <select class="form-control" name="customerId" id="newAccountCustomerId" required>
+            <!-- Loaded via JS -->
+          </select>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Account Type <span class="req">*</span></label>
+            <select class="form-control" name="accountType" id="newAccountTypeSelect" required onchange="
+              const minVal = this.value === 'CURRENT' ? '1000.00' : '500.00';
+              document.getElementById('newAccountMinDepositHint').textContent = 'Minimum initial deposit for ' + this.value + ' is $' + minVal;
+              document.getElementById('newAccountDepositInput').min = minVal;
+              document.getElementById('newAccountDepositInput').value = minVal;
+            ">
+              <option value="SAVINGS">Savings Account (Min Bal: $500.00)</option>
+              <option value="CURRENT">Current / Checking Account (Min Bal: $1,000.00)</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Initial Opening Deposit (USD) <span class="req">*</span></label>
+            <input type="number" step="0.01" min="500.00" value="500.00" class="form-control" name="initialDeposit" id="newAccountDepositInput" required>
+            <div class="form-hint" id="newAccountMinDepositHint">Minimum initial deposit for SAVINGS is $500.00</div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" onclick="App.closeModal('newAccountModal')">Cancel</button>
+        <button type="submit" class="btn btn-primary">Generate Account Number & Open</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- Modal 3: Quick Deposit Modal -->
+<div class="modal-overlay" id="quickDepositModal">
+  <div class="modal-container">
+    <div class="modal-header">
+      <h3>
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="19" x2="12" y2="5"></line><polyline points="5 12 12 5 19 12"></polyline></svg>
+        Quick Deposit
+      </h3>
+      <button class="modal-close-btn">&times;</button>
+    </div>
+    <form id="quickDepositForm">
+      <div class="modal-body">
+        <div class="form-group">
+          <label class="form-label">Target Account <span class="req">*</span></label>
+          <select class="form-control" name="accountNumber" id="quickDepositAccount" required>
+            <!-- Loaded via JS -->
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Deposit Amount (USD) <span class="req">*</span></label>
+          <input type="number" step="0.01" min="1.00" class="form-control" name="amount" placeholder="e.g. 500.00" required>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Transaction Remarks</label>
+          <input type="text" class="form-control" name="description" placeholder="Quick Cash Deposit">
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" onclick="App.closeModal('quickDepositModal')">Cancel</button>
+        <button type="submit" class="btn btn-success">Credit Account</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- Modal 4: Quick Withdrawal Modal -->
+<div class="modal-overlay" id="quickWithdrawModal">
+  <div class="modal-container">
+    <div class="modal-header">
+      <h3>
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"></line><polyline points="19 12 12 19 5 12"></polyline></svg>
+        Quick Withdrawal
+      </h3>
+      <button class="modal-close-btn">&times;</button>
+    </div>
+    <form id="quickWithdrawForm">
+      <div class="modal-body">
+        <div class="form-group">
+          <label class="form-label">Source Account <span class="req">*</span></label>
+          <select class="form-control" name="accountNumber" id="quickWithdrawAccount" required>
+            <!-- Loaded via JS -->
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Withdrawal Amount (USD) <span class="req">*</span></label>
+          <input type="number" step="0.01" min="1.00" class="form-control" name="amount" placeholder="e.g. 200.00" required>
+          <div class="form-hint">Withdrawals must not violate minimum balance reserve limits.</div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Transaction Remarks</label>
+          <input type="text" class="form-control" name="description" placeholder="Quick Cash Withdrawal">
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" onclick="App.closeModal('quickWithdrawModal')">Cancel</button>
+        <button type="submit" class="btn btn-danger">Debit Account</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- Modal 5: Customer Profile View -->
+<div class="modal-overlay" id="customerDetailModal">
+  <div class="modal-container" style="max-width: 650px;">
+    <div class="modal-header">
+      <h3>Customer KYC & Portfolio Dossier</h3>
+      <button class="modal-close-btn">&times;</button>
+    </div>
+    <div class="modal-body" id="customerDetailModalBody">
+      <!-- Populated via JS -->
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-secondary" onclick="App.closeModal('customerDetailModal')">Close</button>
+    </div>
+  </div>
+</div>
+
+<!-- Modal 6: Printable Transaction Advice / Receipt -->
+<div class="modal-overlay" id="receiptModal">
+  <div class="modal-container" style="max-width: 540px;">
+    <div class="modal-header">
+      <h3>Official Electronic Receipt</h3>
+      <button class="modal-close-btn">&times;</button>
+    </div>
+    <div class="modal-body" id="receiptModalContent">
+      <!-- Rendered via JS -->
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-secondary" onclick="App.closeModal('receiptModal')">Close</button>
+      <button type="button" class="btn btn-primary" onclick="Transactions.printCurrentReceipt()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg>
+        Print Receipt
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- Modal 7: New Employee Registration -->
+<div class="modal-overlay" id="newEmployeeModal">
+  <div class="modal-container">
+    <div class="modal-header">
+      <h3>Register Banking Employee / Officer</h3>
+      <button class="modal-close-btn">&times;</button>
+    </div>
+    <form id="newEmployeeForm">
+      <div class="modal-body">
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Username <span class="req">*</span></label>
+            <input type="text" class="form-control" name="username" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Password <span class="req">*</span></label>
+            <input type="password" class="form-control" name="password" minlength="6" required>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Full Name <span class="req">*</span></label>
+            <input type="text" class="form-control" name="fullName" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Email Address <span class="req">*</span></label>
+            <input type="email" class="form-control" name="email" required>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Phone Number</label>
+            <input type="text" class="form-control" name="phone">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Assign System Role <span class="req">*</span></label>
+            <select class="form-control" name="role" required>
+              <option value="ROLE_EMPLOYEE">EMPLOYEE (Teller / Customer Desk)</option>
+              <option value="ROLE_ADMIN">ADMIN (Full Administrative Rights)</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" onclick="App.closeModal('newEmployeeModal')">Cancel</button>
+        <button type="submit" class="btn btn-primary">Create Employee Credentials</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- Modal 8: Fast Sign In Modal with One-Click Demo Credentials -->
+<div class="modal-overlay" id="loginModal">
+  <div class="modal-container" style="max-width: 440px;">
+    <div class="modal-header">
+      <h3>Sign In to Banking Portal</h3>
+      <button class="modal-close-btn">&times;</button>
+    </div>
+    <form id="loginForm">
+      <div class="modal-body">
+        <div class="form-group">
+          <label class="form-label">Username</label>
+          <input type="text" class="form-control" name="username" required>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Password</label>
+          <input type="password" class="form-control" name="password" required>
+        </div>
+
+        <div style="margin-top:16px; padding:12px; background:var(--slate-50); border-radius:var(--radius-sm); border:1px solid var(--slate-200);">
+          <div style="font-size:11px; font-weight:700; color:var(--slate-600); text-transform:uppercase; margin-bottom:8px;">
+            One-Click Academic Demo Logins:
+          </div>
+          <div style="display:flex; flex-direction:column; gap:6px;">
+            <button type="button" class="btn btn-sm btn-secondary" style="justify-content:flex-start;" onclick="App.quickFillLogin('admin', 'admin123')">
+              <strong>Admin:</strong> admin / admin123 (Full Access)
+            </button>
+            <button type="button" class="btn btn-sm btn-secondary" style="justify-content:flex-start;" onclick="App.quickFillLogin('teller', 'teller123')">
+              <strong>Employee:</strong> teller / teller123 (Operations)
+            </button>
+            <button type="button" class="btn btn-sm btn-secondary" style="justify-content:flex-start;" onclick="App.quickFillLogin('john_doe', 'john123')">
+              <strong>Customer:</strong> john_doe / john123 (Self-Service)
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" onclick="App.closeModal('loginModal')">Cancel</button>
+        <button type="submit" class="btn btn-primary">Sign In</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- Floating Toast Container -->
+<div class="toast-container" id="toastContainer"></div>
+
+<!-- JavaScript Core Modules -->
+<script src="js/api.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/dashboard.js"></script>
+<script src="js/customers.js"></script>
+<script src="js/accounts.js"></script>
+<script src="js/transactions.js"></script>
+<script src="js/transfers.js"></script>
+<script src="js/reports.js"></script>
+<script src="js/admin.js"></script>
+<script src="js/app.js"></script>
+
+</body>
+</html>
